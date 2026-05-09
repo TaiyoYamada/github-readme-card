@@ -5,9 +5,9 @@
  */
 
 import { z } from 'zod';
-import { type HexColor, unsafeHex } from '../domain/brand';
-import { DEFAULT_LOCALE, type Locale } from './i18n';
-import { DEFAULT_THEME, type ThemeName, type ThemeOverrides } from './themes';
+import { type HexColor, unsafeHex } from '../domain/brand.js';
+import { DEFAULT_LOCALE, type Locale } from './i18n.js';
+import { DEFAULT_THEME, type ThemeName, type ThemeOverrides } from './themes.js';
 
 const HEX_RE = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
 

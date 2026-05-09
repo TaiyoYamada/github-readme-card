@@ -4,9 +4,9 @@
  * so the eye lands on the handle first.
  */
 
-import type { ResolvedTheme } from '../themes';
-import { CARD, TYPO } from '../tokens';
-import { svgText } from './primitives';
+import type { ResolvedTheme } from '../themes.js';
+import { CARD, TYPO } from '../tokens.js';
+import { svgText } from './primitives.js';
 
 export function title(theme: ResolvedTheme, username: string): string {
   const baseline = 44;

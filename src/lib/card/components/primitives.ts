@@ -4,7 +4,7 @@
  * formatted to a fixed decimal to keep output deterministic.
  */
 
-import { escapeXml } from '../escape';
+import { escapeXml } from '../escape.js';
 
 function n(value: number): string {
   // 3 decimal places, trimmed. Avoids floating-point noise in the SVG.

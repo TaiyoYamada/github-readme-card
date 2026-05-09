@@ -5,13 +5,13 @@
  * locale table go in.
  */
 
-import { backgroundLayers } from './components/background';
-import { svgText } from './components/primitives';
-import { escapeXml } from './escape';
-import { type Locale, strings } from './i18n';
-import { svgDocument } from './render';
-import type { ResolvedTheme } from './themes';
-import { CARD, TYPO } from './tokens';
+import { backgroundLayers } from './components/background.js';
+import { svgText } from './components/primitives.js';
+import { escapeXml } from './escape.js';
+import { type Locale, strings } from './i18n.js';
+import { svgDocument } from './render.js';
+import type { ResolvedTheme } from './themes.js';
+import { CARD, TYPO } from './tokens.js';
 
 export function errorCard(theme: ResolvedTheme, locale: Locale): string {
   const t = strings(locale);

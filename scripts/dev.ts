@@ -6,7 +6,7 @@
 
 import { existsSync } from 'node:fs';
 import { serve } from '@hono/node-server';
-import { app } from '../src/app';
+import { app } from '../src/app.js';
 
 // Load .env.local if present. Node >= 20.12 / 21.7 exposes loadEnvFile.
 if (existsSync('.env.local')) {

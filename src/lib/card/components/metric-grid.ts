@@ -3,11 +3,11 @@
  * A thin accent rule prefixes the row to anchor it visually.
  */
 
-import { escapeXml } from '../escape';
-import { formatNumber } from '../i18n';
-import type { ResolvedTheme } from '../themes';
-import { CARD, TYPO } from '../tokens';
-import { svgText } from './primitives';
+import { escapeXml } from '../escape.js';
+import { formatNumber } from '../i18n.js';
+import type { ResolvedTheme } from '../themes.js';
+import { CARD, TYPO } from '../tokens.js';
+import { svgText } from './primitives.js';
 
 export interface Metric {
   readonly value: number;

@@ -4,8 +4,8 @@
  * is uncached.
  */
 
-import { GitHubError } from '../domain/errors';
-import { getEnv } from '../env';
+import { GitHubError } from '../domain/errors.js';
+import { getEnv } from '../env.js';
 
 const ENDPOINT = 'https://api.github.com/graphql';
 

@@ -3,8 +3,8 @@
  * isolation. They turn raw GraphQL response data into domain values.
  */
 
-import type { LanguageStat } from '../domain/stats';
-import type { RepoNodeData } from './schemas';
+import type { LanguageStat } from '../domain/stats.js';
+import type { RepoNodeData } from './schemas.js';
 
 export interface ContributionsBucket {
   readonly totalCommitContributions: number;

@@ -4,20 +4,20 @@
  * route handler imports from `lib/github`.
  */
 
-import { GitHubError } from '../domain/errors';
-import type { Stats } from '../domain/stats';
-import { getEnv } from '../env';
-import { log, timed } from '../log';
+import { GitHubError } from '../domain/errors.js';
+import type { Stats } from '../domain/stats.js';
+import { getEnv } from '../env.js';
+import { log, timed } from '../log.js';
 import {
   aggregateLanguages,
   type ContributionsBucket,
   sumCommits,
   sumStars,
   yearWindows,
-} from './aggregate';
-import { graphql } from './client';
-import { CONTRIBUTIONS_QUERY, COUNTS_QUERY, USER_QUERY } from './queries';
-import { ContributionsResponse, CountsResponse, UserQueryResponse } from './schemas';
+} from './aggregate.js';
+import { graphql } from './client.js';
+import { CONTRIBUTIONS_QUERY, COUNTS_QUERY, USER_QUERY } from './queries.js';
+import { ContributionsResponse, CountsResponse, UserQueryResponse } from './schemas.js';
 
 export async function fetchStats(): Promise<Stats> {
   const { githubUsername } = getEnv();

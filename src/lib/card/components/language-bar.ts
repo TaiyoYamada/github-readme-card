@@ -3,11 +3,11 @@
  * remainders are merged into "Other".
  */
 
-import type { LanguageStat } from '../../domain/stats';
-import { escapeXml } from '../escape';
-import type { ResolvedTheme } from '../themes';
-import { CARD, LANGUAGE_DISPLAY, RADIUS, TYPO } from '../tokens';
-import { svgText } from './primitives';
+import type { LanguageStat } from '../../domain/stats.js';
+import { escapeXml } from '../escape.js';
+import type { ResolvedTheme } from '../themes.js';
+import { CARD, LANGUAGE_DISPLAY, RADIUS, TYPO } from '../tokens.js';
+import { svgText } from './primitives.js';
 
 interface DisplaySegment {
   readonly name: string;
