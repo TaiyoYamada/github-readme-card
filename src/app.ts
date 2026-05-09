@@ -1,11 +1,13 @@
 /**
- * Hono application root. Imported by:
- *   - api/stats.ts          (Vercel Edge entry, via hono/vercel)
- *   - scripts/dev.ts        (local Node server, via @hono/node-server)
- *   - tests                 (call app.fetch directly)
+ * Hono application — also the Vercel entry. Vercel auto-detects this file
+ * (one of `src/app`, `src/index`, `src/server`, `app`, `index`, `server`)
+ * and runs the `default export` as a Function. The same `app` is shared
+ * with the local dev server (`scripts/dev.ts`) and tests.
  *
- * One handler: GET /api/stats. Always returns 200 with image/svg+xml so
- * embedded README images never break.
+ * Routes:
+ *   GET /            - playground HTML
+ *   GET /api/stats   - SVG card. Always 200 — failures render an error card
+ *                      so embedded README images never break.
  */
 
 import { Hono } from 'hono';
@@ -55,3 +57,5 @@ app.get('/api/stats', async (c) => {
     return svgResponse(svg, ERROR_CACHE);
   }
 });
+
+export default app;

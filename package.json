@@ -9,7 +9,6 @@
   "scripts": {
     "dev": "tsx watch scripts/dev.ts",
     "start": "tsx scripts/dev.ts",
-    "vercel-build": "esbuild src/handler.ts --bundle --platform=node --target=node22 --format=cjs --outfile=api/stats.js --legal-comments=none",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome format --write .",
@@ -26,7 +25,6 @@
     "@hono/node-server": "2.0.2",
     "@types/node": "22.10.0",
     "@vitest/coverage-v8": "4.1.5",
-    "esbuild": "^0.27.5",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "vitest": "4.1.5"
