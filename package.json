@@ -3,14 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "description": "Personal GitHub stats SVG card for README profile.",
-  "type": "module",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
     "dev": "tsx watch scripts/dev.ts",
     "start": "tsx scripts/dev.ts",
-    "vercel-build": "esbuild src/handler.ts --bundle --platform=neutral --target=es2022 --format=esm --outfile=api/stats.js --legal-comments=none",
+    "vercel-build": "esbuild src/handler.ts --bundle --platform=node --target=node22 --format=cjs --outfile=api/stats.js --legal-comments=none",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome format --write .",
