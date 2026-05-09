@@ -9,13 +9,13 @@
  */
 
 import { Hono } from 'hono';
-import { errorCard } from '@/lib/card/error';
-import { parseParams } from '@/lib/card/params';
-import { render } from '@/lib/card/render';
-import { resolveTheme } from '@/lib/card/themes';
-import { type CardError, toCardError } from '@/lib/domain/errors';
-import { fetchStats } from '@/lib/github';
-import { log } from '@/lib/log';
+import { errorCard } from './lib/card/error';
+import { parseParams } from './lib/card/params';
+import { render } from './lib/card/render';
+import { resolveTheme } from './lib/card/themes';
+import { type CardError, toCardError } from './lib/domain/errors';
+import { fetchStats } from './lib/github';
+import { log } from './lib/log';
 import { playgroundHtml } from './playground';
 
 const SUCCESS_CACHE = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400';

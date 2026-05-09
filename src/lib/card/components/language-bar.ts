@@ -3,7 +3,7 @@
  * remainders are merged into "Other".
  */
 
-import type { LanguageStat } from '@/lib/domain/stats';
+import type { LanguageStat } from '../../domain/stats';
 import { escapeXml } from '../escape';
 import type { ResolvedTheme } from '../themes';
 import { CARD, LANGUAGE_DISPLAY, RADIUS, TYPO } from '../tokens';

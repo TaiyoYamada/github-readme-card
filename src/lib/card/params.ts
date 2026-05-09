@@ -5,7 +5,7 @@
  */
 
 import { z } from 'zod';
-import { type HexColor, unsafeHex } from '@/lib/domain/brand';
+import { type HexColor, unsafeHex } from '../domain/brand';
 import { DEFAULT_LOCALE, type Locale } from './i18n';
 import { DEFAULT_THEME, type ThemeName, type ThemeOverrides } from './themes';
 

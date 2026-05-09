@@ -4,10 +4,10 @@
  * route handler imports from `lib/github`.
  */
 
-import { GitHubError } from '@/lib/domain/errors';
-import type { Stats } from '@/lib/domain/stats';
-import { getEnv } from '@/lib/env';
-import { log, timed } from '@/lib/log';
+import { GitHubError } from '../domain/errors';
+import type { Stats } from '../domain/stats';
+import { getEnv } from '../env';
+import { log, timed } from '../log';
 import {
   aggregateLanguages,
   type ContributionsBucket,

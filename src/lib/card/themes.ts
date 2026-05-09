@@ -4,7 +4,7 @@
  * the chosen preset; missing fields fall back to the preset defaults.
  */
 
-import { type HexColor, unsafeHex } from '@/lib/domain/brand';
+import { type HexColor, unsafeHex } from '../domain/brand';
 
 export type ThemeName =
   | 'midnight'

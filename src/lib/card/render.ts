@@ -3,7 +3,7 @@
  * a resolved theme, produce a deterministic SVG string.
  */
 
-import type { Stats } from '@/lib/domain/stats';
+import type { Stats } from '../domain/stats';
 import { backgroundDefs, backgroundLayers } from './components/background';
 import { languageBar } from './components/language-bar';
 import { type Metric, metricGrid } from './components/metric-grid';
