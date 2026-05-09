@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/stats.ts": {
+      "runtime": "edge"
+    }
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/api/stats" }
   ]
