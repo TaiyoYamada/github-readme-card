@@ -25,7 +25,6 @@ yarn-error.log*
 
 # vercel
 .vercel
-api/stats.js
 
 # claude code (local-only permission settings)
 .claude/settings.local.json
