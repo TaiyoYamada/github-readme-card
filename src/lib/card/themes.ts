@@ -6,7 +6,15 @@
 
 import { type HexColor, unsafeHex } from '@/lib/domain/brand';
 
-export type ThemeName = 'midnight' | 'obsidian' | 'aurora' | 'mono';
+export type ThemeName =
+  | 'midnight'
+  | 'obsidian'
+  | 'aurora'
+  | 'mono'
+  | 'plum'
+  | 'espresso'
+  | 'sage'
+  | 'rose';
 
 export const DEFAULT_THEME: ThemeName = 'midnight';
 
@@ -65,6 +73,38 @@ const PRESETS: Record<ThemeName, ThemePreset> = {
     text: h('#9CA3AF'),
     accent: h('#FAFAFA'),
     border: h('#2A2A2A'),
+  },
+  plum: {
+    bgFrom: h('#1A1424'),
+    bgTo: h('#221A2E'),
+    title: h('#F0EBF5'),
+    text: h('#A39BB0'),
+    accent: h('#C4A0E8'),
+    border: h('#2A2034'),
+  },
+  espresso: {
+    bgFrom: h('#1C1612'),
+    bgTo: h('#241C16'),
+    title: h('#F4EFE8'),
+    text: h('#B0A698'),
+    accent: h('#E8B987'),
+    border: h('#2C241C'),
+  },
+  sage: {
+    bgFrom: h('#0F1612'),
+    bgTo: h('#141D18'),
+    title: h('#E8EDE8'),
+    text: h('#9AA89D'),
+    accent: h('#86D6A4'),
+    border: h('#1D2820'),
+  },
+  rose: {
+    bgFrom: h('#1D1518'),
+    bgTo: h('#251B1F'),
+    title: h('#F2EBEC'),
+    text: h('#B0A0A4'),
+    accent: h('#E8A0B8'),
+    border: h('#2C2024'),
   },
 };
 

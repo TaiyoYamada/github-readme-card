@@ -7,17 +7,17 @@
 import { GitHubError } from '@/lib/domain/errors';
 import type { Stats } from '@/lib/domain/stats';
 import { getEnv } from '@/lib/env';
-import { timed } from '@/lib/log';
+import { log, timed } from '@/lib/log';
 import {
   aggregateLanguages,
-  sumContributions,
+  type ContributionsBucket,
+  sumCommits,
   sumStars,
   yearWindows,
-  type ContributionsBucket,
 } from './aggregate';
 import { graphql } from './client';
-import { CONTRIBUTIONS_QUERY, USER_QUERY } from './queries';
-import { ContributionsResponse, UserQueryResponse } from './schemas';
+import { CONTRIBUTIONS_QUERY, COUNTS_QUERY, USER_QUERY } from './queries';
+import { ContributionsResponse, CountsResponse, UserQueryResponse } from './schemas';
 
 export async function fetchStats(): Promise<Stats> {
   const { githubUsername } = getEnv();
@@ -30,6 +30,9 @@ export async function fetchStats(): Promise<Stats> {
     throw new GitHubError('user query schema mismatch');
   }
   if (userParsed.data.errors && userParsed.data.errors.length > 0) {
+    log.error('github.user.errors', {
+      messages: userParsed.data.errors.map((e) => e.message),
+    });
     throw new GitHubError('user query returned errors');
   }
   if (!userParsed.data.data.user) {
@@ -46,39 +49,58 @@ export async function fetchStats(): Promise<Stats> {
   const now = new Date();
   const windows = yearWindows(joinedAt, now);
 
-  const buckets: ContributionsBucket[] = await Promise.all(
-    windows.map(async (w, idx) => {
-      const json = await timed(`github.contributions[${idx}]`, () =>
-        graphql<unknown>(CONTRIBUTIONS_QUERY, {
-          login: githubUsername,
-          from: w.from.toISOString(),
-          to: w.to.toISOString(),
+  const [buckets, counts] = await Promise.all([
+    Promise.all(
+      windows.map(async (w, idx) => {
+        const json = await timed(`github.contributions[${idx}]`, () =>
+          graphql<unknown>(CONTRIBUTIONS_QUERY, {
+            login: githubUsername,
+            from: w.from.toISOString(),
+            to: w.to.toISOString(),
+          }),
+        );
+        const parsed = ContributionsResponse.safeParse(json);
+        if (!parsed.success) throw new GitHubError('contributions schema mismatch');
+        if (parsed.data.errors && parsed.data.errors.length > 0) {
+          log.error('github.contributions.errors', {
+            idx,
+            messages: parsed.data.errors.map((e) => e.message),
+          });
+          throw new GitHubError('contributions query returned errors');
+        }
+        if (!parsed.data.data.user) throw new GitHubError('user disappeared between queries');
+        return parsed.data.data.user.contributionsCollection;
+      }),
+    ) as Promise<ContributionsBucket[]>,
+    (async () => {
+      const json = await timed('github.counts', () =>
+        graphql<unknown>(COUNTS_QUERY, {
+          prSearch: `author:${githubUsername} type:pr`,
+          issueSearch: `author:${githubUsername} type:issue`,
         }),
       );
-      const parsed = ContributionsResponse.safeParse(json);
-      if (!parsed.success) throw new GitHubError('contributions schema mismatch');
+      const parsed = CountsResponse.safeParse(json);
+      if (!parsed.success) throw new GitHubError('counts schema mismatch');
       if (parsed.data.errors && parsed.data.errors.length > 0) {
-        throw new GitHubError('contributions query returned errors');
+        log.error('github.counts.errors', {
+          messages: parsed.data.errors.map((e) => e.message),
+        });
+        throw new GitHubError('counts query returned errors');
       }
-      if (!parsed.data.data.user) throw new GitHubError('user disappeared between queries');
-      return parsed.data.data.user.contributionsCollection;
-    }),
-  );
+      return parsed.data.data;
+    })(),
+  ]);
 
-  const totals = sumContributions(buckets);
+  const commits = sumCommits(buckets);
   const stars = sumStars(repos);
   const languages = aggregateLanguages(repos);
-  const mostUsedLanguage = languages[0] ?? null;
 
   return {
     username: githubUsername,
-    joinedYear: joinedAt.getUTCFullYear(),
-    totalCommits: totals.commits,
-    totalPRs: totals.prs,
-    totalIssues: totals.issues,
+    totalCommits: commits,
+    totalPRs: counts.prs.issueCount,
+    totalIssues: counts.issues.issueCount,
     totalStars: stars,
-    mostUsedLanguage,
     languages,
-    fetchedAt: now,
   };
 }

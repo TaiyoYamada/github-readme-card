@@ -13,16 +13,10 @@ export interface LanguageStat {
 
 export interface Stats {
   readonly username: string;
-  /** Year the user joined GitHub (used for the eyebrow text and contributions window). */
-  readonly joinedYear: number;
   readonly totalCommits: number;
   readonly totalPRs: number;
   readonly totalIssues: number;
   readonly totalStars: number;
-  /** Top language by total bytes across non-fork repos. `null` if no code. */
-  readonly mostUsedLanguage: LanguageStat | null;
   /** Top languages, descending by bytes. Trimmed to a manageable count by the aggregator. */
   readonly languages: ReadonlyArray<LanguageStat>;
-  /** When the data was fetched. Used for the "updated at" footer if shown. */
-  readonly fetchedAt: Date;
 }

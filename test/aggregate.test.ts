@@ -1,10 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  aggregateLanguages,
-  sumContributions,
-  sumStars,
-  yearWindows,
-} from '@/lib/github/aggregate';
+import { aggregateLanguages, sumCommits, sumStars, yearWindows } from '@/lib/github/aggregate';
 import type { RepoNodeData } from '@/lib/github/schemas';
 
 const repo = (
@@ -24,40 +19,24 @@ const repo = (
   },
 });
 
-describe('sumContributions', () => {
+describe('sumCommits', () => {
   it('adds restricted (private) commits to the public commit count', () => {
-    const totals = sumContributions([
-      {
-        totalCommitContributions: 100,
-        totalPullRequestContributions: 5,
-        totalIssueContributions: 2,
-        restrictedContributionsCount: 30,
-      },
-      {
-        totalCommitContributions: 50,
-        totalPullRequestContributions: 10,
-        totalIssueContributions: 4,
-        restrictedContributionsCount: 20,
-      },
+    const total = sumCommits([
+      { totalCommitContributions: 100, restrictedContributionsCount: 30 },
+      { totalCommitContributions: 50, restrictedContributionsCount: 20 },
     ]);
-    expect(totals.commits).toBe(200);
-    expect(totals.prs).toBe(15);
-    expect(totals.issues).toBe(6);
+    expect(total).toBe(200);
   });
 
-  it('returns zeros for empty input', () => {
-    expect(sumContributions([])).toEqual({ commits: 0, prs: 0, issues: 0 });
+  it('returns zero for empty input', () => {
+    expect(sumCommits([])).toBe(0);
   });
 });
 
 describe('sumStars', () => {
   it('sums star counts across repos', () => {
     expect(
-      sumStars([
-        repo('a', 12, false, []),
-        repo('b', 0, true, []),
-        repo('c', 5, false, []),
-      ]),
+      sumStars([repo('a', 12, false, []), repo('b', 0, true, []), repo('c', 5, false, [])]),
     ).toBe(17);
   });
 });

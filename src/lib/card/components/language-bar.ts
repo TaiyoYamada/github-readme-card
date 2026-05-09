@@ -4,9 +4,9 @@
  */
 
 import type { LanguageStat } from '@/lib/domain/stats';
-import type { ResolvedTheme } from '../themes';
-import { CARD, LANGUAGE_DISPLAY, TYPO, RADIUS } from '../tokens';
 import { escapeXml } from '../escape';
+import type { ResolvedTheme } from '../themes';
+import { CARD, LANGUAGE_DISPLAY, RADIUS, TYPO } from '../tokens';
 import { svgText } from './primitives';
 
 interface DisplaySegment {
@@ -18,8 +18,8 @@ interface DisplaySegment {
 const FALLBACK_COLOR = '#9CA3AF';
 const OTHER_COLOR = '#4B5563';
 
-const BAR_Y = 162;
-const LEGEND_BASELINE = 184;
+const BAR_Y = 136;
+const LEGEND_BASELINE = 158;
 
 function buildSegments(
   languages: ReadonlyArray<LanguageStat>,

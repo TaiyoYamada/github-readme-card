@@ -3,26 +3,26 @@
  * A thin accent rule prefixes the row to anchor it visually.
  */
 
+import { escapeXml } from '../escape';
+import { formatNumber } from '../i18n';
 import type { ResolvedTheme } from '../themes';
 import { CARD, TYPO } from '../tokens';
-import { escapeXml } from '../escape';
 import { svgText } from './primitives';
-import { formatNumber } from '../i18n';
 
 export interface Metric {
   readonly value: number;
   readonly label: string;
 }
 
-const NUMBER_BASELINE = 122;
-const LABEL_BASELINE = 142;
+const NUMBER_BASELINE = 96;
+const LABEL_BASELINE = 116;
 
 export function metricGrid(theme: ResolvedTheme, metrics: ReadonlyArray<Metric>): string {
   const innerWidth = CARD.width - CARD.padding.x * 2;
   const tileWidth = innerWidth / metrics.length;
 
   // Accent rule above the first tile to anchor the row.
-  const ruleY = 96;
+  const ruleY = 70;
   const accentBar = `<line x1="${CARD.padding.x}" y1="${ruleY}" x2="${
     CARD.padding.x + 18
   }" y2="${ruleY}" stroke="${escapeXml(theme.accent)}" stroke-width="2" opacity="0.9" />`;

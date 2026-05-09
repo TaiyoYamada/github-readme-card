@@ -37,10 +37,24 @@ export const CONTRIBUTIONS_QUERY = /* GraphQL */ `
     user(login: $login) {
       contributionsCollection(from: $from, to: $to) {
         totalCommitContributions
-        totalPullRequestContributions
-        totalIssueContributions
         restrictedContributionsCount
       }
+    }
+  }
+`;
+
+/**
+ * Cross-repo PR / Issue counts via the search index. This catches PRs
+ * opened on third-party OSS repos that don't show up in the contribution
+ * graph counters.
+ */
+export const COUNTS_QUERY = /* GraphQL */ `
+  query Counts($prSearch: String!, $issueSearch: String!) {
+    prs: search(query: $prSearch, type: ISSUE, first: 0) {
+      issueCount
+    }
+    issues: search(query: $issueSearch, type: ISSUE, first: 0) {
+      issueCount
     }
   }
 `;

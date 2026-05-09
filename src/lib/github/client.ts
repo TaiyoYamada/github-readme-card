@@ -9,10 +9,7 @@ import { getEnv } from '@/lib/env';
 
 const ENDPOINT = 'https://api.github.com/graphql';
 
-export async function graphql<T>(
-  query: string,
-  variables: Record<string, unknown>,
-): Promise<T> {
+export async function graphql<T>(query: string, variables: Record<string, unknown>): Promise<T> {
   const { githubToken } = getEnv();
 
   let res: Response;

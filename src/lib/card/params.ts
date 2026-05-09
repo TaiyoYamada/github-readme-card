@@ -39,11 +39,12 @@ const hexParam = z
 
 const boolParam = z.enum(['true', 'false']).transform((v) => v === 'true');
 
-const intRange = (min: number, max: number) =>
-  z.coerce.number().int().min(min).max(max);
+const intRange = (min: number, max: number) => z.coerce.number().int().min(min).max(max);
 
 const ParamsSchema = z.object({
-  theme: z.enum(['midnight', 'obsidian', 'aurora', 'mono']).optional(),
+  theme: z
+    .enum(['midnight', 'obsidian', 'aurora', 'mono', 'plum', 'espresso', 'sage', 'rose'])
+    .optional(),
   bg_color: hexParam.optional(),
   title_color: hexParam.optional(),
   text_color: hexParam.optional(),

@@ -16,6 +16,7 @@ import { resolveTheme } from '@/lib/card/themes';
 import { type CardError, toCardError } from '@/lib/domain/errors';
 import { fetchStats } from '@/lib/github';
 import { log } from '@/lib/log';
+import { playgroundHtml } from './playground';
 
 const SUCCESS_CACHE = 'public, max-age=600, s-maxage=3600, stale-while-revalidate=86400';
 const ERROR_CACHE = 'public, max-age=60, s-maxage=60';
@@ -32,6 +33,12 @@ function svgResponse(svg: string, cacheControl: string): Response {
 }
 
 export const app = new Hono();
+
+app.get('/', (c) =>
+  c.html(playgroundHtml, 200, {
+    'Cache-Control': 'public, max-age=300, s-maxage=300',
+  }),
+);
 
 app.get('/api/stats', async (c) => {
   const params = parseParams(new URL(c.req.url).searchParams);

@@ -7,11 +7,11 @@
 
 import { backgroundLayers } from './components/background';
 import { svgText } from './components/primitives';
-import { strings, type Locale } from './i18n';
+import { escapeXml } from './escape';
+import { type Locale, strings } from './i18n';
 import { svgDocument } from './render';
 import type { ResolvedTheme } from './themes';
 import { CARD, TYPO } from './tokens';
-import { escapeXml } from './escape';
 
 export function errorCard(theme: ResolvedTheme, locale: Locale): string {
   const t = strings(locale);

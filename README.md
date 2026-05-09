@@ -10,7 +10,7 @@ GitHub プロフィール README に貼り付けるための、個人用 GitHub 
 
 - `/api/stats` の単一エンドポイントで SVG を返す。常に 200 を返すので、README の画像が壊れることはない
 - 公開コントリビューションに加えて、プライベートのコントリビューションも数える (`restrictedContributionsCount` 経由)
-- ビルトインテーマ 4 種: `midnight` (デフォルト) / `obsidian` / `aurora` / `mono`
+- ビルトインテーマ 8 種: `midnight` (デフォルト) / `obsidian` / `aurora` / `mono` / `plum` / `espresso` / `sage` / `rose`
 - クエリパラメータでカード単位のオーバーライド (色 / 角丸 / 枠線 / ロケール)
 - ロケールは en / ja
 - `Cache-Control` (`s-maxage=3600`, `stale-while-revalidate=86400`) で Vercel Edge Network に 1 時間キャッシュ
@@ -61,7 +61,7 @@ npx vercel deploy
 
 | パラメータ      | 型               | 備考                                            |
 | --------------- | ---------------- | ----------------------------------------------- |
-| `theme`         | enum             | `midnight` \| `obsidian` \| `aurora` \| `mono`  |
+| `theme`         | enum             | `midnight` \| `obsidian` \| `aurora` \| `mono` \| `plum` \| `espresso` \| `sage` \| `rose` |
 | `bg_color`      | hex              | 3/4/6/8 桁。先頭の `#` は省略可                 |
 | `title_color`   | hex              |                                                 |
 | `text_color`    | hex              |                                                 |

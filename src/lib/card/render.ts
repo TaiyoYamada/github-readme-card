@@ -5,11 +5,10 @@
 
 import type { Stats } from '@/lib/domain/stats';
 import { backgroundDefs, backgroundLayers } from './components/background';
-import { featuredLanguage } from './components/featured-language';
-import { header } from './components/header';
 import { languageBar } from './components/language-bar';
-import { metricGrid, type Metric } from './components/metric-grid';
-import { strings, type Locale } from './i18n';
+import { type Metric, metricGrid } from './components/metric-grid';
+import { title } from './components/title';
+import { type Locale, strings } from './i18n';
 import type { ResolvedTheme } from './themes';
 import { CARD } from './tokens';
 
@@ -31,8 +30,7 @@ export function render({ stats, theme, locale }: RenderInput): string {
 
   const body = [
     backgroundLayers(theme),
-    header(theme, t.eyebrow, stats.joinedYear),
-    featuredLanguage(theme, stats.mostUsedLanguage, t.mostUsed),
+    title(theme, stats.username),
     metricGrid(theme, metrics),
     languageBar(theme, stats.languages, t.other),
   ].join('');

@@ -42,8 +42,6 @@ export const ContributionsResponse = z.object({
       .object({
         contributionsCollection: z.object({
           totalCommitContributions: z.number().int().nonnegative(),
-          totalPullRequestContributions: z.number().int().nonnegative(),
-          totalIssueContributions: z.number().int().nonnegative(),
           restrictedContributionsCount: z.number().int().nonnegative(),
         }),
       })
@@ -52,6 +50,12 @@ export const ContributionsResponse = z.object({
   errors: z.array(z.object({ message: z.string() })).optional(),
 });
 
-export type UserQueryData = z.infer<typeof UserQueryResponse>;
-export type ContributionsData = z.infer<typeof ContributionsResponse>;
+export const CountsResponse = z.object({
+  data: z.object({
+    prs: z.object({ issueCount: z.number().int().nonnegative() }),
+    issues: z.object({ issueCount: z.number().int().nonnegative() }),
+  }),
+  errors: z.array(z.object({ message: z.string() })).optional(),
+});
+
 export type RepoNodeData = z.infer<typeof RepoNode>;

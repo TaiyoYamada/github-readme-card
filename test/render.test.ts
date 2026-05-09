@@ -5,18 +5,15 @@ import type { Stats } from '@/lib/domain/stats';
 
 const baseStats: Stats = {
   username: 'octocat',
-  joinedYear: 2023,
   totalCommits: 1234,
   totalPRs: 84,
   totalIssues: 32,
   totalStars: 147,
-  mostUsedLanguage: { name: 'TypeScript', bytes: 100000, color: '#3178c6' },
   languages: [
     { name: 'TypeScript', bytes: 100000, color: '#3178c6' },
     { name: 'Go', bytes: 50000, color: '#00ADD8' },
     { name: 'Python', bytes: 30000, color: '#3572A5' },
   ],
-  fetchedAt: new Date('2026-05-05T00:00:00Z'),
 };
 
 describe('render', () => {
@@ -33,7 +30,6 @@ describe('render', () => {
     const svg = render({
       stats: {
         ...baseStats,
-        mostUsedLanguage: { name: '<script>', bytes: 1, color: null },
         languages: [{ name: '<script>', bytes: 1, color: null }],
       },
       theme: resolveTheme(),
@@ -51,7 +47,7 @@ describe('render', () => {
 
   it('renders without crashing when there are no languages', () => {
     const svg = render({
-      stats: { ...baseStats, mostUsedLanguage: null, languages: [] },
+      stats: { ...baseStats, languages: [] },
       theme: resolveTheme(),
       locale: 'en',
     });

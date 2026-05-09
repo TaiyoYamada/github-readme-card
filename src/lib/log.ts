@@ -80,10 +80,8 @@ function emit(level: Level, msg: string, fields: Record<string, unknown>): void 
     ...(redact(fields) as Record<string, unknown>),
   };
   const line = JSON.stringify(payload);
-  // biome-ignore lint/suspicious/noConsole: structured logger
-  if (level === 'error' || level === 'warn') console.error(line);
-  // biome-ignore lint/suspicious/noConsole: structured logger
-  else console.log(line);
+  const sink = level === 'error' || level === 'warn' ? console.error : console.log;
+  sink(line);
 }
 
 export const log = {

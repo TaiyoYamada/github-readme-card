@@ -8,34 +8,19 @@ import type { RepoNodeData } from './schemas';
 
 export interface ContributionsBucket {
   readonly totalCommitContributions: number;
-  readonly totalPullRequestContributions: number;
-  readonly totalIssueContributions: number;
   readonly restrictedContributionsCount: number;
 }
 
-export interface ContributionsTotals {
-  readonly commits: number;
-  readonly prs: number;
-  readonly issues: number;
-}
-
 /**
- * Sum contributions across all year buckets. Restricted (private) commits
- * are added to the public commit count so the card reflects total work,
- * not just public.
+ * Sum commit contributions across all year buckets. Restricted (private)
+ * commits are added so the card reflects total work, not just public.
  */
-export function sumContributions(
-  buckets: ReadonlyArray<ContributionsBucket>,
-): ContributionsTotals {
+export function sumCommits(buckets: ReadonlyArray<ContributionsBucket>): number {
   let commits = 0;
-  let prs = 0;
-  let issues = 0;
   for (const b of buckets) {
     commits += b.totalCommitContributions + b.restrictedContributionsCount;
-    prs += b.totalPullRequestContributions;
-    issues += b.totalIssueContributions;
   }
-  return { commits, prs, issues };
+  return commits;
 }
 
 export function sumStars(repos: ReadonlyArray<RepoNodeData>): number {

@@ -5,9 +5,9 @@
  * without competing with the foreground content.
  */
 
+import { escapeXml } from '../escape';
 import type { ResolvedTheme } from '../themes';
 import { CARD } from '../tokens';
-import { escapeXml } from '../escape';
 
 export const GRADIENT_ID = 'card-bg';
 export const GLOW_ID = 'card-glow';
@@ -67,4 +67,3 @@ export function backgroundLayers(theme: ResolvedTheme): string {
     borderRect,
   ].join('');
 }
-

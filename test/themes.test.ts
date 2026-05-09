@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { unsafeHex } from '@/lib/domain/brand';
 import { resolveTheme } from '@/lib/card/themes';
+import { unsafeHex } from '@/lib/domain/brand';
 
 describe('resolveTheme', () => {
   it('returns the midnight preset by default', () => {

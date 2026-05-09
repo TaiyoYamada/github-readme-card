@@ -8,8 +8,6 @@ export type Locale = 'en' | 'ja';
 export const DEFAULT_LOCALE: Locale = 'en';
 
 export interface Strings {
-  readonly eyebrow: string;
-  readonly mostUsed: string;
   readonly commits: string;
   readonly prs: string;
   readonly issues: string;
@@ -21,8 +19,6 @@ export interface Strings {
 
 const TABLE: Record<Locale, Strings> = {
   en: {
-    eyebrow: 'GITHUB · ACTIVITY',
-    mostUsed: 'MOST USED',
     commits: 'Commits',
     prs: 'Pull Requests',
     issues: 'Issues',
@@ -32,8 +28,6 @@ const TABLE: Record<Locale, Strings> = {
     errorBody: 'Stats temporarily unavailable',
   },
   ja: {
-    eyebrow: 'GITHUB · アクティビティ',
-    mostUsed: '主要言語',
     commits: 'コミット',
     prs: 'プルリクエスト',
     issues: 'イシュー',
