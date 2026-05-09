@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(npm test *)",
+      "Bash(npm run *)",
+      "Bash(GITHUB_USERNAME=octocat GITHUB_TOKEN=fake_token_for_route_check PORT=3939 npx tsx *)",
+      "Bash(curl -sf -o /dev/null http://localhost:3939/api/stats)",
+      "Bash(curl -si http://localhost:3939/api/stats)",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"tsx scripts/dev.ts\")"
+    ]
+  }
+}
