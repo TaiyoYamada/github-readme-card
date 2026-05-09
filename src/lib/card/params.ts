@@ -43,7 +43,19 @@ const intRange = (min: number, max: number) => z.coerce.number().int().min(min).
 
 const ParamsSchema = z.object({
   theme: z
-    .enum(['midnight', 'obsidian', 'aurora', 'mono', 'plum', 'espresso', 'sage', 'rose'])
+    .enum([
+      'midnight',
+      'obsidian',
+      'aurora',
+      'mono',
+      'plum',
+      'espresso',
+      'sage',
+      'rose',
+      'snow',
+      'paper',
+      'mist',
+    ])
     .optional(),
   bg_color: hexParam.optional(),
   title_color: hexParam.optional(),

@@ -142,14 +142,21 @@ export const playgroundHtml = /* html */ `<!DOCTYPE html>
     <label>
       Theme
       <select id="theme">
-        <option value="">midnight (default)</option>
-        <option value="obsidian">obsidian</option>
-        <option value="aurora">aurora</option>
-        <option value="mono">mono</option>
-        <option value="plum">plum</option>
-        <option value="espresso">espresso</option>
-        <option value="sage">sage</option>
-        <option value="rose">rose</option>
+        <optgroup label="Dark">
+          <option value="">midnight (default)</option>
+          <option value="obsidian">obsidian</option>
+          <option value="aurora">aurora</option>
+          <option value="mono">mono</option>
+          <option value="plum">plum</option>
+          <option value="espresso">espresso</option>
+          <option value="sage">sage</option>
+          <option value="rose">rose</option>
+        </optgroup>
+        <optgroup label="Light">
+          <option value="snow">snow</option>
+          <option value="paper">paper</option>
+          <option value="mist">mist</option>
+        </optgroup>
       </select>
     </label>
 

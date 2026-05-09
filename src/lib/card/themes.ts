@@ -14,7 +14,10 @@ export type ThemeName =
   | 'plum'
   | 'espresso'
   | 'sage'
-  | 'rose';
+  | 'rose'
+  | 'snow'
+  | 'paper'
+  | 'mist';
 
 export const DEFAULT_THEME: ThemeName = 'midnight';
 
@@ -105,6 +108,30 @@ const PRESETS: Record<ThemeName, ThemePreset> = {
     text: h('#B0A0A4'),
     accent: h('#E8A0B8'),
     border: h('#2C2024'),
+  },
+  snow: {
+    bgFrom: h('#FFFFFF'),
+    bgTo: h('#F4F6FA'),
+    title: h('#0F172A'),
+    text: h('#475569'),
+    accent: h('#2563EB'),
+    border: h('#E2E8F0'),
+  },
+  paper: {
+    bgFrom: h('#FDFAF3'),
+    bgTo: h('#F7F1E3'),
+    title: h('#2A1C10'),
+    text: h('#6B5D50'),
+    accent: h('#B45309'),
+    border: h('#EBE2D0'),
+  },
+  mist: {
+    bgFrom: h('#F8FAFC'),
+    bgTo: h('#EEF2F7'),
+    title: h('#1E293B'),
+    text: h('#64748B'),
+    accent: h('#8B5CF6'),
+    border: h('#E2E8F0'),
   },
 };
 
