@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "tsx watch scripts/dev.ts",
     "start": "tsx scripts/dev.ts",
+    "vercel-build": "esbuild src/handler.ts --bundle --platform=neutral --target=es2022 --format=esm --outfile=api/stats.js --legal-comments=none",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome format --write .",
@@ -18,7 +19,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@vercel/edge": "^1.3.1",
     "hono": "4.12.18",
     "zod": "4.4.3"
   },
@@ -27,6 +27,7 @@
     "@hono/node-server": "2.0.2",
     "@types/node": "22.10.0",
     "@vitest/coverage-v8": "4.1.5",
+    "esbuild": "^0.27.5",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "vitest": "4.1.5"
