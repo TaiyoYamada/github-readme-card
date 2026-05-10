@@ -135,3 +135,7 @@ npm run test:coverage  # vitest with v8 coverage (thresholds: lines/funcs/stmts 
 The coverage report is uploaded as a `coverage` artifact on each run.
 
 Deployment lives in Vercel's GitHub integration (push to `main` → Production, PR → Preview), so there's no deploy step in Actions.
+
+## License
+
+Copyright (c) 2026 TaiyoYamada. All rights reserved. See [LICENSE.txt](./LICENSE.txt). This is not open source — no rights to copy, modify, redistribute, or deploy are granted.
